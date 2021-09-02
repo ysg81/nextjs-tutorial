@@ -1,37 +1,34 @@
 import axios from "axios"
-import { useRouter } from "next/dist/client/router"
-import { useEffect, useState } from "react"
-import { Item } from "semantic-ui-react"
+import Head from "next/head"
 import ItemDetail from "../../src/components/ItemDetail"
-import Spinner from "../../src/components/Spinner"
 
-const Post = () => {
-	const [itemInfo, setItemInfo] = useState({})
-	const [loading, setLoading] = useState(false)
-	const router = useRouter()
-	const { id } = router.query
-	const API_URL = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`
-
-	const getData = async () => {
-		setLoading(true)
-		await axios.get(API_URL).then((res) => {
-			setItemInfo(res.data)
-		})
-		setLoading(false)
-	}
-
-	useEffect(() => {
-		if (id && id > 0) {
-			getData()
-		}
-	}, [id])
-
+const Post = ({ itemInfo }) => {
 	return (
 		<>
-			{loading && <Spinner />}
-			{!loading && <ItemDetail itemInfo={itemInfo} />}
+			{itemInfo && (
+				<>
+					<Head>
+						<title>{itemInfo.name}</title>
+						<meta name="description" content={itemInfo.description}></meta>
+					</Head>
+					<ItemDetail itemInfo={itemInfo} />
+				</>
+			)}
 		</>
 	)
 }
 
 export default Post
+
+export async function getServerSideProps(context) {
+	const id = context.params.id
+	const apiUrl = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`
+	const res = await axios.get(apiUrl)
+	const data = res.data
+
+	return {
+		props: {
+			itemInfo: data,
+		},
+	}
+}

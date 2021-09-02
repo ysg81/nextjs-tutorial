@@ -8,17 +8,16 @@ import Spinner from "../src/components/Spinner"
 
 export default function Home() {
 	const [items, setItems] = useState([])
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 	const API_URL =
 		"http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
 
 	const getData = async () => {
-		setLoading(true)
 		await axios.get(API_URL).then((res) => {
 			// console.log(res.data);
 			setItems(res.data)
+			setLoading(false)
 		})
-		setLoading(false)
 	}
 
 	useEffect(() => {
@@ -29,6 +28,7 @@ export default function Home() {
 		<div>
 			<Head>
 				<title>HOME | Gon</title>
+				<meta name="description" content="Gons 페이지 홈입니다." />
 			</Head>
 			{loading && <Spinner />}
 			{!loading && (
