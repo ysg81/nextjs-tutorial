@@ -1,28 +1,39 @@
-import Link from "next/link";
-import React from "react";
-import { Grid } from "semantic-ui-react";
-import classes from "./ItemDetail.module.css";
+import { Button, Header } from "semantic-ui-react"
+import classes from "./ItemDetail.module.css"
 
-function ItemDetail({ item }) {
+function ItemDetail({ itemInfo }) {
+	const {
+		name,
+		image_link,
+		price,
+		description,
+		updated_at,
+		category,
+		product_type,
+		product_link,
+	} = itemInfo
+
 	return (
-		<Grid.Column key={item.key}>
-			
-			<Link href={`/view/${item.id}`}>
-				<div className={classes.wrap}>
-					<img
-						src={item.image_link}
-						alt={item.name}
-						className={classes.img_item}
-					/>
-					<strong className={classes.tit_item}>{item.name}</strong>
-					<span className={classes.txt_info}>
-						{item.category} {item.product_type}
-					</span>
-					<strong className={classes.num_price}>${item.price}</strong>
+		<>
+			<div className={classes.wrap}>
+				<div className={classes.img_item}>
+					<img src={image_link} alt={name} />
 				</div>
-			</Link>
-		</Grid.Column>
-	);
+				<div className={classes.info_item}>
+					<strong className={classes.tit_item}>{name}</strong>
+					<strong className={classes.num_price}>${price}</strong>
+					<span className={classes.txt_info}>
+						{category ? `${category}/` : ""}
+						{product_type}
+					</span>
+					<Button color="orange">구매하기</Button>
+				</div>
+			</div>
+
+			<Header as="h3">Description</Header>
+			<p style={{ paddingBottom: 20, fontSize: 18 }}>{description}</p>
+		</>
+	)
 }
 
-export default ItemDetail;
+export default ItemDetail

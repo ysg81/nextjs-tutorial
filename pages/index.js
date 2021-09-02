@@ -1,29 +1,29 @@
-import Head from "next/head";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import ItemList from "../src/components/ItemList";
-import { Divider, Header } from "semantic-ui-react";
-import Spinner from "../src/components/Spinner";
+import Head from "next/head"
+import axios from "axios"
+import { useEffect, useState } from "react"
+import ItemList from "../src/components/ItemList"
+import { Divider, Header } from "semantic-ui-react"
+import Spinner from "../src/components/Spinner"
 // import styles from "../styles/Home.module.css";
 
 export default function Home() {
-	const [items, setItems] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [items, setItems] = useState([])
+	const [loading, setLoading] = useState(false)
 	const API_URL =
-		"http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline";
+		"http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
 
 	const getData = async () => {
-		setLoading(true);
+		setLoading(true)
 		await axios.get(API_URL).then((res) => {
 			// console.log(res.data);
-			setItems(res.data);
-			setLoading(false);
-		});
-	};
+			setItems(res.data)
+		})
+		setLoading(false)
+	}
 
 	useEffect(() => {
-		getData();
-	}, []);
+		getData()
+	}, [])
 
 	return (
 		<div>
@@ -46,5 +46,5 @@ export default function Home() {
 				</>
 			)}
 		</div>
-	);
+	)
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import ItemDetail from "./ItemDetail";
+import Item from "./Item";
 
 function ItemList({ items }) {
 	return (
@@ -8,7 +8,7 @@ function ItemList({ items }) {
 			<Grid columns={3}>
 				<Grid.Row>
 					{items.map((item) => (
-						<ItemDetail item={item} key={item.id} />
+						<Item item={item} key={item.id} />
 					))}
 				</Grid.Row>
 			</Grid>

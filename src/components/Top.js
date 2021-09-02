@@ -1,5 +1,5 @@
-import { Header } from "semantic-ui-react";
-import Gnb from "./Gnb";
+import { Header } from "semantic-ui-react"
+import Gnb from "./Gnb"
 
 function Top() {
 	return (
@@ -9,14 +9,14 @@ function Top() {
 					<img
 						src="/images/gon.jpg"
 						alt="logo"
-						style={{ display: "block", width: 80 }}
+						style={{ display: "block", width: 80, borderRadius: "50%" }}
 					/>
 				</div>
 				<Header as="h1">Gon2</Header>
 			</div>
 			<Gnb />
 		</div>
-	);
+	)
 }
 
-export default Top;
+export default Top
