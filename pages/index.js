@@ -9,8 +9,7 @@ import Spinner from "../src/components/Spinner"
 export default function Home() {
 	const [items, setItems] = useState([])
 	const [loading, setLoading] = useState(true)
-	const API_URL =
-		"http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
+	const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 	const getData = async () => {
 		await axios.get(API_URL).then((res) => {
@@ -28,7 +27,7 @@ export default function Home() {
 		<div>
 			<Head>
 				<title>HOME | Gon</title>
-				<meta name="description" content="Gons 페이지 홈입니다." />
+				<meta name="description" content="Gons 페이지 홈입니다" />
 			</Head>
 			{loading && <Spinner />}
 			{!loading && (

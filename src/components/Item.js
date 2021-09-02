@@ -1,7 +1,7 @@
-import Link from "next/link";
-import React from "react";
-import { Grid } from "semantic-ui-react";
-import classes from "./Item.module.css";
+import Link from "next/link"
+import React from "react"
+import { Grid } from "semantic-ui-react"
+import classes from "./Item.module.css"
 
 function Item({ item }) {
 	return (
@@ -21,7 +21,7 @@ function Item({ item }) {
 				</div>
 			</Link>
 		</Grid.Column>
-	);
+	)
 }
 
-export default Item;
+export default Item
