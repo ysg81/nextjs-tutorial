@@ -21,7 +21,21 @@ const Post = ({ itemInfo, name }) => {
 
 export default Post
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+	const apiUrl = process.env.apiUrl
+	const res = await axios.get(apiUrl)
+	const { data } = res
+	return {
+		paths: data.slice(0, 9).map((item) => ({
+			params: {
+				id: item.id.toString(),
+			},
+		})),
+		fallback: true,
+	}
+}
+
+export async function getStaticProps(context) {
 	const id = context.params.id
 	const apiUrl = `http://makeup-api.herokuapp.com/api/v1/products/${id}.json`
 	const res = await axios.get(apiUrl)

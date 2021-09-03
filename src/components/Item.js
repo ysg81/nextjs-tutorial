@@ -12,6 +12,7 @@ function Item({ item }) {
 						src={item.image_link}
 						alt={item.name}
 						className={classes.img_item}
+						style={{ cursor: "pointer" }}
 					/>
 					<strong className={classes.tit_item}>{item.name}</strong>
 					<span className={classes.txt_info}>

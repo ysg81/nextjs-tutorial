@@ -3,13 +3,11 @@ import React, { useState } from "react"
 import { Menu } from "semantic-ui-react"
 
 function Gnb() {
-
 	const router = useRouter()
 	let activeItem
-	if(router.pathname === "/"){
+	if (router.pathname === "/") {
 		activeItem = "home"
-	}
-	else if(router.pathname === "/about"){
+	} else if (router.pathname === "/about") {
 		activeItem = "about"
 	}
 	const goLink = (e, data) => {
